@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nombre": "Auriculares Gamer",
+    "precio": 25000,
+    "imagen": "/images/auriculares.jpg",
+    "descripcion": "Auriculares cómodos para gaming."
+  },
+  {
+    "id": 2,
+    "nombre": "Mouse RGB",
+    "precio": 18000,
+    "imagen": "/images/mouse.jpg",
+    "descripcion": "Mouse ergonómico con iluminación RGB."
+  },
+  {
+    "id": 3,
+    "nombre": "Teclado Mecánico",
+    "precio": 32000,
+    "imagen": "/images/teclado.jpg",
+    "descripcion": "Teclado mecánico resistente."
+  }
+]

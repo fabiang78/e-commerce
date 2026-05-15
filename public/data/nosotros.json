@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ada Lovelace",
+    "email": "ada@empresa.com",
+    "puesto": "CEO",
+    "foto": "/images/avatar1.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Alan Turing",
+    "email": "alan@empresa.com",
+    "puesto": "Desarrollador",
+    "foto": "/images/avatar2.png"
+  },
+  {
+    "id": 3,
+    "nombre": "Grace Hopper",
+    "email": "grace@empresa.com",
+    "puesto": "Analista",
+    "foto": "/images/avatar3.png"
+  },
+  {
+    "id": 4,
+    "nombre": "Tim Berners-Lee",
+    "email": "tim@empresa.com",
+    "puesto": "Diseñador UX",
+    "foto": "/images/avatar4.png"
+  }
+]
