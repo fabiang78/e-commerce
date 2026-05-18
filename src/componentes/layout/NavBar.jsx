@@ -1,18 +1,34 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 
 function NavBar() {
-    const { cantidadTotal } = useCart();
-    return (
-        <nav className="navbar">
+  const { cantidadTotal } = useCart();
 
-            <Link to="/">Inicio</Link>
+  return (
+    <nav className="navbar">
 
-            <Link to="/productos">Productos</Link>
+      <NavLink
+        to="/"
+        className={({ isActive }) => (isActive ? "activo" : "")}
+      >
+        Inicio
+      </NavLink>
 
-            <Link to="/carrito">Carrito ({cantidadTotal})</Link>
+      <NavLink
+        to="/productos"
+        className={({ isActive }) => (isActive ? "activo" : "")}
+      >
+        Productos
+      </NavLink>
 
-        </nav>
+      <NavLink
+        to="/carrito"
+        className={({ isActive }) => (isActive ? "activo" : "")}
+      >
+        Carrito ({cantidadTotal})
+      </NavLink>
+
+    </nav>
   );
 }
 

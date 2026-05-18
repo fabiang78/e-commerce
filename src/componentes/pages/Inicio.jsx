@@ -1,15 +1,30 @@
 import { useEffect, useState } from "react";
-import TarjetaProducto from "../TarjetaProducto/TarjetaProducto";
+import ListaProductos from "../ListaProductos/ListaProductos";
 
 const Inicio = () => {
   const [productos, setProductos] = useState([]);
-    useEffect(() => {
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
     fetch("/data/productos.json")
-      .then((respuesta) => respuesta.json())
+      .then((respuesta) => {
+        if (!respuesta.ok) {
+          throw new Error("No se pudieron cargar los productos");
+        }
+
+        return respuesta.json();
+      })
       .then((datos) => {
         setProductos(datos);
+        setCargando(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setCargando(false);
       });
   }, []);
+
   return (
     <main className="inicio">
       <section className="inicio-hero">
@@ -25,19 +40,11 @@ const Inicio = () => {
       <section className="productos-destacados">
         <h2>Productos destacados</h2>
 
-        <div className="contenedor-productos">
+        {cargando && <p>Cargando productos...</p>}
 
-          {productos.map((producto) => (
-            <TarjetaProducto
-              key={producto.id}
-              id={producto.id}
-              imagen={producto.imagen}
-              nombre={producto.nombre}
-              precio={producto.precio}
-            />
-          ))}
+        {error && <p>Error: {error}</p>}
 
-        </div>
+        {!cargando && !error && <ListaProductos productos={productos} />}
       </section>
     </main>
   );
