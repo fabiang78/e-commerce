@@ -22,9 +22,12 @@ export function CartProvider({ children }) {
       return [...carritoActual, { ...producto, cantidad: 1 }];
     });
   };
-
+  const cantidadTotal = carrito.reduce(
+  (total, item) => total + item.cantidad,
+  0
+  );
   return (
-    <CartContext.Provider value={{ carrito, agregarAlCarrito }}>
+    <CartContext.Provider value={{ carrito, agregarAlCarrito, cantidadTotal }}>
       {children}
     </CartContext.Provider>
   );
