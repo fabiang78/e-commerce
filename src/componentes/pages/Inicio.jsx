@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import ListaProductos from "../ListaProductos/ListaProductos";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 
 const Inicio = () => {
   const [productos, setProductos] = useState([]);
@@ -7,22 +9,25 @@ const Inicio = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/data/productos.json")
-      .then((respuesta) => {
-        if (!respuesta.ok) {
-          throw new Error("No se pudieron cargar los productos");
-        }
+    const obtenerProductos = async () => {
+      try {
+        const productosRef = collection(db, "productos");
+        const respuesta = await getDocs(productosRef);
 
-        return respuesta.json();
-      })
-      .then((datos) => {
-        setProductos(datos);
+        const productosFirebase = respuesta.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setProductos(productosFirebase);
+      } catch {
+        setError("No se pudieron cargar los productos");
+      } finally {
         setCargando(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setCargando(false);
-      });
+      }
+    };
+
+    obtenerProductos();
   }, []);
 
   return (
