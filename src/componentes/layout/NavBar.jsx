@@ -20,6 +20,12 @@ function NavBar() {
       >
         Productos
       </NavLink>
+      <NavLink
+        to="/admin-productos"
+        className={({ isActive }) => (isActive ? "activo" : "")}
+      >
+      Admin
+      </NavLink>
 
       <NavLink
         to="/carrito"

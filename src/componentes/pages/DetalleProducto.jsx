@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 import { useCart } from "../../context/CartContext";
 
 function DetalleProducto() {
@@ -8,15 +10,19 @@ function DetalleProducto() {
   const [producto, setProducto] = useState(null);
 
   useEffect(() => {
-    fetch("/data/productos.json")
-      .then((respuesta) => respuesta.json())
-      .then((datos) => {
-        const productoEncontrado = datos.find(
-          (prod) => prod.id === Number(id)
-        );
+    const obtenerProducto = async () => {
+      const productoRef = doc(db, "productos", id);
+      const respuesta = await getDoc(productoRef);
 
-        setProducto(productoEncontrado);
-      });
+      if (respuesta.exists()) {
+        setProducto({
+          id: respuesta.id,
+          ...respuesta.data(),
+        });
+      }
+    };
+
+    obtenerProducto();
   }, [id]);
 
   if (!producto) {
@@ -25,21 +31,18 @@ function DetalleProducto() {
 
   return (
     <main className="detalle-producto">
-      <img
-        src={producto.imagen}
-        alt={producto.nombre}
-      />
+      <img src={producto.imagen ||"https://placehold.co/500x500?text=Sin+Imagen"} alt={producto.nombre} />
 
       <h1>{producto.nombre}</h1>
 
-      <p className="detalle-precio">
-        ${producto.precio}
-      </p>
+      <p className="detalle-precio">${producto.precio}</p>
 
       <p>{producto.descripcion}</p>
 
-      <button className="boton-accion boton-carrito"
-      onClick={() => agregarAlCarrito(producto)}>
+      <button
+        className="boton-accion boton-carrito"
+        onClick={() => agregarAlCarrito(producto)}
+      >
         Añadir al carrito
       </button>
 

@@ -6,6 +6,7 @@ import { CartProvider } from "./context/CartContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DetalleProducto from "./componentes/pages/DetalleProducto";
 import Inicio from "./componentes/pages/Inicio";
+import AdminProductos from "./componentes/AdminProductos/AdminProductos";
 
 function App() {
   return (
@@ -44,7 +45,15 @@ function App() {
           <Layout>
             <Carrito />
           </Layout>
-  }
+        }
+      />
+      <Route
+          path="/admin-productos"
+          element={
+          <Layout>
+            <AdminProductos />
+          </Layout>
+        }
 />
     </Routes>
     </BrowserRouter>

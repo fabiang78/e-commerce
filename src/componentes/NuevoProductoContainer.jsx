@@ -3,6 +3,7 @@ import FormularioProducto from "./FormularioProducto";
 
 function NuevoProductoContainer() {
   const [loading, setLoading] = useState(false);
+  const [productoAEditar, setProductoAEditar] = useState(null);
 
   const handleFormSubmit = async (producto) => {
     setLoading(true);
@@ -29,6 +30,7 @@ function NuevoProductoContainer() {
       <FormularioProducto 
         onSubmit={handleFormSubmit} 
         loading={loading} 
+        productoAEditar={productoAEditar}
       />
     </div>
   );
