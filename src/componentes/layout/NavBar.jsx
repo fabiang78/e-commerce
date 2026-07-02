@@ -4,36 +4,26 @@ import { useCart } from "../../context/CartContext";
 function NavBar() {
   const { cantidadTotal } = useCart();
 
+  const claseActiva = ({ isActive }) =>
+    isActive ? "activo" : "";
+
   return (
     <nav className="navbar">
-
-      <NavLink
-        to="/"
-        className={({ isActive }) => (isActive ? "activo" : "")}
-      >
+      <NavLink to="/" className={claseActiva}>
         Inicio
       </NavLink>
 
-      <NavLink
-        to="/productos"
-        className={({ isActive }) => (isActive ? "activo" : "")}
-      >
+      <NavLink to="/productos" className={claseActiva}>
         Productos
       </NavLink>
-      <NavLink
-        to="/admin-productos"
-        className={({ isActive }) => (isActive ? "activo" : "")}
-      >
-      Admin
+
+      <NavLink to="/admin-productos" className={claseActiva}>
+        Admin
       </NavLink>
 
-      <NavLink
-        to="/carrito"
-        className={({ isActive }) => (isActive ? "activo" : "")}
-      >
+      <NavLink to="/carrito" className={claseActiva}>
         Carrito ({cantidadTotal})
       </NavLink>
-
     </nav>
   );
 }

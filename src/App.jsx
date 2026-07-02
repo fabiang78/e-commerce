@@ -1,62 +1,28 @@
 import "./App.css";
-import Layout from "./componentes/layout/Layout";
-import Productos from "./componentes/pages/Productos";
-import Carrito from "./componentes/pages/Carrito";
-import { CartProvider } from "./context/CartContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DetalleProducto from "./componentes/pages/DetalleProducto";
+import { CartProvider } from "./context/CartContext";
+
+import Layout from "./componentes/layout/Layout";
 import Inicio from "./componentes/pages/Inicio";
+import Productos from "./componentes/pages/Productos";
+import DetalleProducto from "./componentes/pages/DetalleProducto";
+import Carrito from "./componentes/pages/Carrito";
 import AdminProductos from "./componentes/AdminProductos/AdminProductos";
 
 function App() {
   return (
     <CartProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
+      <BrowserRouter>
         <Layout>
-          <Inicio />
+          <Routes>
+            <Route path="/" element={<Inicio />} />
+            <Route path="/productos" element={<Productos />} />
+            <Route path="/producto/:id" element={<DetalleProducto />} />
+            <Route path="/carrito" element={<Carrito />} />
+            <Route path="/admin-productos" element={<AdminProductos />} />
+          </Routes>
         </Layout>
-        }
-      />
-
-      <Route
-          path="/producto/:id"
-          element={
-        <Layout>
-          <DetalleProducto />
-        </Layout>
-        }
-      />
-      <Route
-          path="/productos"
-          element={
-          <Layout>
-            <Productos />
-          </Layout>
-         }
-      />
-
-      <Route
-          path="/carrito"
-          element={
-          <Layout>
-            <Carrito />
-          </Layout>
-        }
-      />
-      <Route
-          path="/admin-productos"
-          element={
-          <Layout>
-            <AdminProductos />
-          </Layout>
-        }
-/>
-    </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
     </CartProvider>
   );
 }

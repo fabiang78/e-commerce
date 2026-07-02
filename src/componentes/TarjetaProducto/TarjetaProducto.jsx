@@ -14,12 +14,14 @@ function TarjetaProducto({ id, imagen, nombre, precio }) {
         };
 
   const toggleFavorito = () => {
-    setEsFavorito(!esFavorito);
+    setEsFavorito((favorito) =>!favorito);
   };
 
   return (
     <div className={styles.tarjeta}>
-      <img className={styles.imagen} src={ imagen || "https://placehold.co/300x300?text=Sin+Imagen"}alt={nombre}/>
+      <img className={styles.imagen} 
+      src={ imagen || "https://placehold.co/300x300?text=Sin+Imagen"}
+      alt={nombre}/>
 
       <div className={styles.encabezado}>
         <h3 className={styles.nombre}>{nombre}</h3>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ListaProductos from "../ListaProductos/ListaProductos";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
+import { Link } from "react-router-dom";
 
 const Inicio = () => {
   const [productos, setProductos] = useState([]);
@@ -39,7 +40,9 @@ const Inicio = () => {
           Descubrí productos seleccionados, ofertas especiales y novedades.
         </p>
 
-        <button>Ver productos</button>
+        <Link to="/productos">
+            <button>Ver productos</button>
+        </Link>
       </section>
 
       <section className="productos-destacados">
@@ -49,7 +52,13 @@ const Inicio = () => {
 
         {error && <p>Error: {error}</p>}
 
-        {!cargando && !error && <ListaProductos productos={productos} />}
+        {!cargando && !error && productos.length === 0 && (
+          <p>No hay productos disponibles.</p>
+        )}
+
+        {!cargando && !error && productos.length > 0 && (
+          <ListaProductos productos={productos} />
+        )}
       </section>
     </main>
   );
