@@ -25,13 +25,19 @@ export function CartProvider({ children }) {
     });
   };
 
+  const vaciarCarrito = () => {
+    setCarrito([]);
+  };
+
   const cantidadTotal = carrito.reduce(
     (total, item) => total + item.cantidad,
     0
   );
 
   return (
-    <CartContext.Provider value={{ carrito, agregarAlCarrito, cantidadTotal }}>
+    <CartContext.Provider
+      value={{ carrito, agregarAlCarrito, cantidadTotal, vaciarCarrito }}
+    >
       {children}
     </CartContext.Provider>
   );

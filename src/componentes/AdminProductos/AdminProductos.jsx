@@ -59,7 +59,7 @@ function AdminProductos() {
     
     };
     const eliminarProducto = async (id) => {
-    const confirmar = confirm("¿Seguro que querés eliminar este producto?");
+    const confirmar = window.confirm("¿Seguro que querés eliminar este producto?");
 
         if (!confirmar) return;
 
@@ -114,11 +114,15 @@ function AdminProductos() {
                 <td>{producto.nombre}</td>
                 <td>${producto.precio}</td>
                 <td>
-                <button onClick={() => setProductoAEditar(producto)}>
+                <button onClick={() => setProductoAEditar(producto)}
+                   aria-label={`Editar ${producto.nombre}`}
+                   >
                      Editar
                 </button>
 
-                <button onClick={() => eliminarProducto(producto.id)}>
+                <button onClick={() => eliminarProducto(producto.id)}
+                  aria-label={`Eliminar ${producto.nombre}`}
+                  >
                     Eliminar
                 </button>
                 </td>
