@@ -1,16 +1,50 @@
-# React + Vite
+# TecnoMarket
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TecnoMarket es una aplicación de comercio electrónico desarrollada como proyecto final del curso de React de Talento Tech.
 
-Currently, two official plugins are available:
+La aplicación permite consultar productos tecnológicos y electrodomésticos, visualizar su información detallada, buscar productos y agregarlos a un carrito de compras.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+También cuenta con autenticación de usuarios y un panel de administración protegido para gestionar los productos almacenados en Firebase.
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Listado de productos.
+- Búsqueda de productos en tiempo real.
+- Paginación de productos.
+- Vista de detalle de cada producto.
+- Carrito de compras.
+- Agregar productos al carrito.
+- Eliminar productos del carrito.
+- Vaciar el carrito.
+- Registro de usuarios.
+- Inicio y cierre de sesión.
+- Rutas protegidas.
+- Panel de administración.
+- Alta, modificación y eliminación de productos.
+- Confirmación mediante modal antes de eliminar productos.
+- Indicadores de carga.
+- Manejo de errores.
+- SEO mediante títulos y meta descripciones.
 
-## Expanding the ESLint configuration
+## Tecnologías utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Vite
+- React Router
+- Firebase Authentication
+- Firebase Firestore
+- React Bootstrap
+- Bootstrap
+- Styled Components
+- React Icons
+- React Helmet Async
+
+## Instalación
+
+Clonar el repositorio:
+
+```bash
+git clone fabiang78/e-commerce
+cd e-commerce
+npm install
+npm run dev

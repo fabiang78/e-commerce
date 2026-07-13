@@ -1,7 +1,7 @@
 import Inicio from "./Inicio";
 
 function Productos() {
-  return <Inicio />;
+  return <Inicio paginaProductos={true}/>;
 }
 
 export default Productos;

@@ -1,7 +1,8 @@
 import { useCart } from "../../context/CartContext.jsx";
+import { Helmet } from "react-helmet-async";
 
 function Carrito() {
-  const { carrito, vaciarCarrito } = useCart();
+  const { carrito, eliminarDelCarrito, vaciarCarrito } = useCart();
 
   const manejarVaciarCarrito = () => {
     const confirmar = window.confirm(
@@ -14,35 +15,56 @@ function Carrito() {
   };
 
   return (
-    <div className="carrito">
-      <h1>Carrito de compras</h1>
+    <>
+      <Helmet>
+        <title>Carrito | TecnoMarket</title>
+        <meta
+          name="description"
+          content="Revisá los productos agregados a tu carrito en TecnoMarket."
+        />
+      </Helmet>
 
-      {carrito.length === 0 ? (
-        <p>No hay productos agregados todavía.</p>
-      ) : (
-        <>
-          {carrito.map((producto) => (
-            <div key={producto.id} className="producto-carrito">
-              <h2>{producto.nombre}</h2>
+      <main className="carrito">
+        <h1>Carrito de compras</h1>
 
-              <p>Precio: ${producto.precio}</p>
+        {carrito.length === 0 ? (
+          <p>No hay productos agregados todavía.</p>
+        ) : (
+          <>
+            {carrito.map((producto) => (
+              <div key={producto.id} className="producto-carrito">
+                <h2>{producto.nombre}</h2>
 
-              <p>Cantidad: {producto.cantidad}</p>
+                <p>
+                  Precio: $
+                  {Number(producto.precio).toLocaleString("es-AR")}
+                </p>
+
+                <p>Cantidad: {producto.cantidad}</p>
+
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={() => eliminarDelCarrito(producto.id)}
+                  aria-label={`Eliminar ${producto.nombre} del carrito`}
+                >
+                  Eliminar
+                </button>
+              </div>
+            ))}
+
+            <div style={{ marginTop: "20px" }}>
+              <button
+                className="btn btn-outline-danger"
+                onClick={manejarVaciarCarrito}
+                aria-label="Vaciar el carrito de compras"
+              >
+                Vaciar carrito
+              </button>
             </div>
-          ))}
-
-          <div style={{ marginTop: "20px" }}>
-            <button
-              className="btn btn-outline-danger"
-              onClick={manejarVaciarCarrito}
-              aria-label="Vaciar el carrito de compras"
-            >
-              Vaciar carrito
-            </button>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </main>
+    </>
   );
 }
 

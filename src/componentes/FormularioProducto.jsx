@@ -1,12 +1,14 @@
 function FormularioProducto({ onSubmit, loading, productoAEditar }) {
-  const manejarEnvio = (e) => {
+  const manejarEnvio = async (e) => {
     e.preventDefault();
 
-    const nombre = e.target.nombre.value;
-    const precio = e.target.precio.value;
-    const imagen = e.target.imagen.value;
-    const descripcion = e.target.descripcion.value;
-    
+    const formulario = e.currentTarget;
+
+    const nombre = formulario.nombre.value;
+    const precio = formulario.precio.value;
+    const imagen = formulario.imagen.value;
+    const descripcion = formulario.descripcion.value;
+
     if (nombre.trim() === "") {
       alert("El nombre es obligatorio");
       return;
@@ -18,46 +20,78 @@ function FormularioProducto({ onSubmit, loading, productoAEditar }) {
     }
 
     const producto = {
-      nombre,
+      nombre: nombre.trim(),
       precio: Number(precio),
-      imagen,
-      descripcion,
+      imagen: imagen.trim(),
+      descripcion: descripcion.trim(),
     };
 
-    onSubmit(producto);
+    await onSubmit(producto);
 
-    e.target.reset();
+    formulario.reset();
   };
 
   return (
-    <form onSubmit={manejarEnvio}>
-      <h2>{productoAEditar ? "Editar producto" : "Agregar producto"}</h2>
+    <form className="formulario-producto" onSubmit={manejarEnvio}>
+      <h2>
+        {productoAEditar ? "Editar producto" : "Agregar producto"}
+      </h2>
 
-      <input
-        name="nombre"
-        placeholder="Nombre del producto"
-        defaultValue={productoAEditar ? productoAEditar.nombre : ""}
-      />
+      <div className="formulario-grid">
+        <div className="campo-formulario">
+          <label htmlFor="nombre">Nombre del producto</label>
+          <input
+            id="nombre"
+            name="nombre"
+            type="text"
+            placeholder="Ejemplo: Smart TV 50 pulgadas"
+            defaultValue={productoAEditar?.nombre || ""}
+            required
+          />
+        </div>
 
-      <input
-        name="precio"
-        placeholder="Precio"
-        type="number"
-        defaultValue={productoAEditar ? productoAEditar.precio : ""}
-      />
-      <input
-        name="imagen"
-        placeholder="URL de la imagen"
-        defaultValue={productoAEditar ? productoAEditar.imagen : ""}
-      />
-      
-      <textarea
-        name="descripcion"
-        placeholder="Descripción del producto"
-        defaultValue={productoAEditar ? productoAEditar.descripcion : ""}
-      />
+        <div className="campo-formulario">
+          <label htmlFor="precio">Precio</label>
+          <input
+            id="precio"
+            name="precio"
+            type="number"
+            min="1"
+            step="0.01"
+            placeholder="Ejemplo: 250000"
+            defaultValue={productoAEditar?.precio || ""}
+            required
+          />
+        </div>
 
-      <button type="submit" disabled={loading}>
+        <div className="campo-formulario campo-completo">
+          <label htmlFor="imagen">URL de la imagen</label>
+          <input
+            id="imagen"
+            name="imagen"
+            type="url"
+            placeholder="https://ejemplo.com/producto.jpg"
+            defaultValue={productoAEditar?.imagen || ""}
+          />
+        </div>
+
+        <div className="campo-formulario campo-completo">
+          <label htmlFor="descripcion">Descripción</label>
+          <textarea
+            id="descripcion"
+            name="descripcion"
+            rows="5"
+            placeholder="Escribí una descripción breve del producto"
+            defaultValue={productoAEditar?.descripcion || ""}
+          />
+        </div>
+      </div>
+
+      <button
+        className="boton-guardar-producto"
+        type="submit"
+        disabled={loading}
+      >
         {loading
           ? "Guardando..."
           : productoAEditar

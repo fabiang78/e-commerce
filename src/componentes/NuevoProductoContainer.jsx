@@ -3,7 +3,7 @@ import FormularioProducto from "./FormularioProducto";
 
 function NuevoProductoContainer() {
   const [loading, setLoading] = useState(false);
-  const [productoAEditar, setProductoAEditar] = useState(null);
+  const [productoAEditar] = useState(null);
 
   const handleFormSubmit = async (producto) => {
     setLoading(true);

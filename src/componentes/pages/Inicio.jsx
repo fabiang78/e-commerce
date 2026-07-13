@@ -5,6 +5,7 @@ import { db } from "../../firebase/firebase";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+import Spinner from "react-bootstrap/Spinner";
 import {
   Hero,
   HeroTitulo,
@@ -12,7 +13,7 @@ import {
   HeroButton
 } from "../styled/HeroStyles";
 
-const Inicio = () => {
+const Inicio = ({ paginaProductos = false }) => {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
@@ -60,12 +61,21 @@ const Inicio = () => {
     return (
       <>
        <Helmet>
-    <title>Inicio | TecnoMarket</title>
-    <meta
-      name="description"
-      content="TecnoMarket - Tienda online desarrollada con React y Firebase."
-    />
-  </Helmet>
+          <title>
+             {paginaProductos
+             ? "Productos | TecnoMarket"
+             : "Inicio | TecnoMarket"}
+          </title>
+            <meta
+              name="description"
+              content={
+                    paginaProductos
+                    ? "Explorá los productos disponibles en TecnoMarket."
+                    : "TecnoMarket - Tienda online desarrollada con React y Firebase."
+              }
+              
+          />
+        </Helmet>
     <main className="inicio">
       <Hero>
 
@@ -104,7 +114,15 @@ const Inicio = () => {
           />
         </div>
 
-        {cargando && <p>Cargando productos...</p>}
+        {cargando && (
+          <div className="text-center my-4">
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Cargando productos...</span>
+            </Spinner>
+
+              <p className="mt-2">Cargando productos...</p>
+          </div>
+)}
 
         {error && <p>Error: {error}</p>}
 
