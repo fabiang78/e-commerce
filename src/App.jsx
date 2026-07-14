@@ -11,6 +11,7 @@ import DetalleProducto from "./componentes/pages/DetalleProducto";
 import Carrito from "./componentes/pages/Carrito";
 import AdminProductos from "./componentes/AdminProductos/AdminProductos";
 import Registro from "./componentes/pages/Registro";
+import AdminCupones from "./componentes/AdminCupones/AdminCupones";
 
 function App() {
   return (
@@ -33,6 +34,14 @@ function App() {
                      </ProtectedRoute>
                  }
                />
+               <Route
+                    path="/admin-cupones"
+                    element={
+                    <ProtectedRoute>
+                      <AdminCupones />
+                    </ProtectedRoute>
+                  }
+                />
               
             </Routes>
           </Layout>

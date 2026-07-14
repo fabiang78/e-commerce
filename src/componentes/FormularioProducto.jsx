@@ -69,8 +69,8 @@ function FormularioProducto({ onSubmit, loading, productoAEditar }) {
           <input
             id="imagen"
             name="imagen"
-            type="url"
-            placeholder="https://ejemplo.com/producto.jpg"
+            type="text"
+            placeholder="Ruta o imagen del producto"
             defaultValue={productoAEditar?.imagen || ""}
           />
         </div>

@@ -24,8 +24,8 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-info">
-        <h3>Mi Tienda React</h3>
-        <p>Proyecto realizado para la pre-entrega de Talento Tech.</p>
+        <h3>TecnoMarket</h3>
+        <p>Proyecto final desarrollado para Talento Tech Raect.</p>
       </div>
 
       <div className="footer-equipo">

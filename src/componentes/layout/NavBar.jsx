@@ -26,10 +26,16 @@ function NavBar() {
     </NavLink>
 
     {usuario && (
+    <>
       <NavLink to="/admin-productos" className={claseActiva}>
         Admin
       </NavLink>
-    )}
+
+      <NavLink to="/admin-cupones" className={claseActiva}>
+        Cupones
+      </NavLink>
+    </>
+  )}
 
     <NavLink to="/carrito" className={claseActiva}>
       Carrito ({cantidadTotal})
